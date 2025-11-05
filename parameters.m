@@ -31,20 +31,23 @@ A = [0,0,0,1,0,0,0,0,0,0,0,0;...
 
 B = [zeros(5,4);1/p.m, 0,0,0; zeros(3,4); 0,1/p.Ixx, 0,0;0,0,1/p.Iyy,0; 0,0,0,1/p.Izz];
 
-C = eye(12);
-D = zeros(12,4);
+C = zeros(6, 12);
+C(1:3, 1:3) = eye(3);
+C(4:6, 7:9) = eye(3);
+D = zeros(size(C,1),4);
 
-x = -3;
-y = -4;
-z = -0.4;
-dotx = -1.4;
-doty =-1.5;
-dotz =-1.6;
-phi = -7;
-theta =-8;
-psi = -9;
-dotphi = -10;
-dottheta = -11;
-dotpsi = -12;
+x_K = -3;
+y_K = -4;
+z_K = -0.4;
+dotx_K = -1.4;
+doty_K =-1.5;
+dotz_K =-1.6;
+phi_K = -7;
+theta_K =-8;
+psi_K = -9;
+dotphi_K = -10;
+dottheta_K = -11;
+dotpsi_K = -12;
 
-K = place(A, B, [x,y,z,dotx,doty,dotz,phi,theta,psi, dotphi,dottheta,dotpsi]);
+K = place(A, B, [x_K,y_K,z_K,dotx_K,doty_K,dotz_K,phi_K,theta_K,psi_K, dotphi_K,dottheta_K,dotpsi_K]);
+L = place(A', C', [-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16])';
