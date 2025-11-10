@@ -51,3 +51,14 @@ dotpsi_K = -12;
 
 K = place(A, B, [x_K,y_K,z_K,dotx_K,doty_K,dotz_K,phi_K,theta_K,psi_K, dotphi_K,dottheta_K,dotpsi_K]);
 L = place(A', C', [-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16])';
+
+lin_sys = ss(A,B,C,D);
+
+dt = 0.1;
+
+dlin_sys = c2d(lin_sys, dt);
+
+Ad = dlin_sys.A;
+Bd = dlin_sys.B;
+Cd = dlin_sys.C;
+Dd = dlin_sys.D;
