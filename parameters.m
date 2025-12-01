@@ -39,23 +39,28 @@ C(1:3, 1:3) = eye(3);
 C(4:6, 7:9) = eye(3);
 D = zeros(size(C,1),4);
 
-x_K = -4.0;
-y_K = -1.8;
-z_K = -1.8;
-dotx_K = -4.02;
-doty_K =-3.03;
-dotz_K =-3.01;
-phi_K = -2.3;
-theta_K =-2.4;
-psi_K = -2.5;
-dotphi_K = -1.11;
-dottheta_K = -1.62;
-dotpsi_K = -1.63;
 
-eig_K_c = [x_K,y_K,z_K,dotx_K,doty_K,dotz_K,phi_K,theta_K,psi_K, dotphi_K,dottheta_K,dotpsi_K];
-eig_L_c = [-5,-3.1,-3.2,-5.1,-5.2,-5.3,-2.6,-2.5,-2.4,-2.3,-2.2,-2.1];
-K = place(A, B, eig_K_c);
-L = place(A', C', eig_L_c)';
+% WHAT WORKS FOR SURE: NO *2 ON POSITIONS AND ANGLES
+x_K = -1.0*3;
+y_K = -1.8*3;
+z_K = -1.8*3;
+dotx_K = -1.02*10;
+doty_K =-1.03*10;
+dotz_K =-1.01*10;
+phi_K = -1.3*2.65;
+theta_K =-2.4*2.65;
+psi_K = -2.5*2.65;
+dotphi_K = -1.11*10;
+dottheta_K = -1.62*10;
+dotpsi_K = -1.63*10;
+
+
+eig_K_c = 1/4*[x_K,y_K,z_K,dotx_K,doty_K,dotz_K,phi_K,theta_K,psi_K, dotphi_K,dottheta_K,dotpsi_K];
+
+eig_L_c = [-5*3,-3.1*3,-3.2*3,-5.1*10,-5.2*10,-5.3*10,-2.6*2.65,-2.5*2.65,-2.4*2.65,-2.3*10,-2.2*10,-2.1*10];
+
+K = place(A, B, eig_K_c );
+L = place(A', C', eig_L_c )';
 
 lin_sys = ss(A,B,C,D);
 
