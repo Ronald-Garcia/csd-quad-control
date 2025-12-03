@@ -82,5 +82,20 @@ b2 = 2*p.b;
 u2omega = 1/(4*p.b * p.k * p.L) * [bL, b2, 0, Lk; bL, 0, b2, -Lk; bL, -b2, 0, Lk; bL, 0, -b2, -Lk];
 omega2u = [ones(1,4) * p.k; Lk, 0, -Lk, 0; 0, Lk, 0, -Lk; p.b, -p.b, p.b, -p.b];
 
-
+start_wp = [0,0,0]';
 p.wp = [[8,3,5]', [7,9,10]', [5,1,1]', [3,8,3]', [8,2,9]', [3;2;3], [6;5;4], [9;6;5]];
+
+
+for i=1:length(p.wp)
+    for j=1:(length(p.wp)-i)
+
+        wp_place = p.wp(:, i);
+        distance = norm(start_wp - current_wp);
+        if distance < min_norm
+            min_norm = distance;
+            closest_wp = current_wp;
+        end
+    end
+
+end
+
